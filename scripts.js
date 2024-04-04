@@ -8,7 +8,6 @@ container.style.flexDirection = 'row';
 container.style.width = '720px';
 container.style.height = '720px';
 container.style.flexWrap = 'wrap';
-container.style.justifyContent = 'center';
 
 
 function createGrid(size){
@@ -27,7 +26,18 @@ function createGrid(size){
             container.appendChild(grid);
         }
     }
+
+    const grid = document.querySelectorAll('.grid');
+    console.log(grid.length);
+
+    //Loop to detect all grid events
+    for (let i = 0; i < grid.length; i++){
+        grid[i].addEventListener('mouseover', (e) => {
+            grid[i].style.backgroundColor = 'black';
+        });
+    }
 }
 
 
-createGrid(100);
+
+createGrid(64);
