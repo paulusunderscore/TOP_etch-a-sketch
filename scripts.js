@@ -38,6 +38,24 @@ function createGrid(size){
     }
 }
 
+const boxSize = document.createElement('div');
+main.insertBefore(boxSize, main.firstChild);
 
+const boxSizeTitle = document.createElement('div');
+boxSizeTitle.textContent = 'Grid Size (1-100)';
+boxSize.appendChild(boxSizeTitle);
 
-createGrid(64);
+const boxSizeInput = document.createElement('input');
+boxSize.appendChild(boxSizeInput);
+
+const boxSizeButton = document.createElement('button');
+boxSizeButton.textContent = 'Reset';
+boxSize.appendChild(boxSizeButton);
+
+boxSizeButton.addEventListener('click', (e) => {
+    if (boxSizeInput.value >= 1 && 
+        boxSizeInput.value <= 100){
+            createGrid(boxSizeInput.value);
+        }
+});
+
