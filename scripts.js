@@ -1,6 +1,6 @@
 const main = document.querySelector('#main');
 main.style.display = 'flex';
-main.style.justifyContent = 'center';
+main.style.justifyContent = 'space-evenly';
 
 const container = document.querySelector('#container');
 container.style.display = 'flex';
@@ -12,10 +12,9 @@ container.style.flexWrap = 'wrap';
 let n = 1;
 const gridElements = [];
 
-
-
 function createGrid(size){
     let gridSize = 720 / size;
+    //loop to create rows and columns for grid
     for (let i = 0; i < size; i++){
         gridElements[i] = [];
         for (let j = 0; j < size; j++){
@@ -27,8 +26,7 @@ function createGrid(size){
             gridElements[i][j] = grid;
         }
     }
-    console.log('row :' + gridElements.length);
-    console.log('column :' + gridElements[0].length);
+
     const grid = document.querySelectorAll(`.grid${n}`);
     console.log(grid.length);
 
@@ -45,17 +43,23 @@ function createGrid(size){
     return gridElements;
 }
 
-createGrid(50);
+createGrid(36);
 
-console.log('gridElements.length' + gridElements.length);
-console.log('gridElements[0].length' + gridElements[0].length);
+const leftSide = document.createElement('div');
+main.insertBefore(leftSide, main.firstChild);
 
 const boxSize = document.createElement('div');
 main.insertBefore(boxSize, main.firstChild);
 
-const boxSizeTitle = document.createElement('div');
-boxSizeTitle.textContent = 'Grid Size (1-100)';
-boxSize.appendChild(boxSizeTitle);
+const boxSizeTitle1 = document.createElement('div');
+boxSizeTitle1.textContent = 'ETCH A SKETCH';
+boxSizeTitle1.style.fontFamily = 'Courier New';
+boxSizeTitle1.style.fontSize = '72px';
+boxSize.appendChild(boxSizeTitle1);
+
+const boxSizeTitle2 = document.createElement('div');
+boxSizeTitle2.textContent = 'Insert grid size (1-100)';
+boxSize.appendChild(boxSizeTitle2);
 
 const boxSizeInput = document.createElement('input');
 boxSize.appendChild(boxSizeInput);
@@ -67,6 +71,7 @@ boxSize.appendChild(boxSizeButton);
 boxSizeButton.addEventListener('click', (e) => {
     if (boxSizeInput.value >= 1 && 
         boxSizeInput.value <= 100){
+            //loop row and column to select all grid classes using gridElements
             for(let i = 0; i < gridElements.length; i++){
                 for(let j = 0; j < gridElements[i].length; j++){
                     gridElements[i][j].remove();
