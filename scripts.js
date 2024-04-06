@@ -32,12 +32,16 @@ function createGrid(size){
     const grid = document.querySelectorAll(`.grid${n}`);
     console.log(grid.length);
 
+    let opac = [];
     //Loop to detect all grid events
     for (let i = 0; i < grid.length; i++){
+        opac[i] = 0.2;
+
         grid[i].addEventListener('mouseover', (e) => {
-            grid[i].style.backgroundColor = 'black';
-        });
-    }
+            grid[i].style.backgroundColor = `rgba(0, 0, 0, ${opac[i]})`;
+            opac[i] += 0.2;
+    });
+}
     return gridElements;
 }
 
